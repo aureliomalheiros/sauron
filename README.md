@@ -20,7 +20,7 @@ prometheus
     └── Vagrantfile
 ```
 
-- [Vagrant](vagrant/README.MD)
+- [Vagrant](vagrant/README.md)
   
 #### Reference
 
