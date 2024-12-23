@@ -5,6 +5,7 @@ hosts = {
 Vagrant.configure ("2") do |config|
     config.vm.synced_folder "config/", "/etc/prometheus"
     config.vm.provision "shell", path: "scripts/startup-prometheus.sh"
+
     hosts.each do |name, conf|
         config.vm.define "#{name}" do |server|
             server.vm.box = "#{conf["image"]}"
