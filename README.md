@@ -1,5 +1,7 @@
 # Study prometheus
 
+![sauron-observability](img/sauron.png)
+
 This repository provides a study environment for Prometheus monitoring, transitioning from Vagrant-based setups to containerized environments using Docker and Kubernetes. It includes configurations and manifests to explore Prometheus features in modern cloud-native infrastructures.
 
 ## Prerequisites
