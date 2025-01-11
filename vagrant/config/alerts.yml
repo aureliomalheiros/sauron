@@ -1,0 +1,11 @@
+groups:
+  - name: my firts alerts
+    rules:
+    - alert: InstanceDown
+      expr: up == 0
+      for: 1m
+      annotations:
+        title: 'Finish test instance  {{ $labels.instance }}'
+        description: 'My first alert in prometheus'
+      labels:
+        severity: 'critical'
