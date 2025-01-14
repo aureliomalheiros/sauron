@@ -3,12 +3,13 @@ hosts = {
 }
 
 Vagrant.configure ("2") do |config|
-    config.vm.synced_folder "config/", "/etc/prometheus"
-    
+    config.vm.synced_folder "config/prometheus/", "/etc/prometheus"
+    config.vm.synced_folder "config/alertmanager/", "/etc/alertmanager/"
+
     config.vm.provision "shell", path: "scripts/startup-prometheus.sh"
     config.vm.provision "shell", path: "scripts/startup-node_exporter.sh"
     config.vm.provision "shell", path: "scripts/grafana.sh"
-
+    config.vm.provision "shell", path: "scripts/startup-alert_manager.sh"
     hosts.each do |name, conf|
         config.vm.define "#{name}" do |server|
             server.vm.box = "#{conf["image"]}"
