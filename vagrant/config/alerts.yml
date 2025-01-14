@@ -9,3 +9,9 @@ groups:
         description: 'My first alert in prometheus'
       labels:
         severity: 'critical'
+    - alert: NodeLoad
+      expr: node_load1 > 1.0
+      for: 1m
+      annotations:
+        title: 'Node Load  {{ $labels.instance }}'
+        description: 'My first alert in prometheus'
