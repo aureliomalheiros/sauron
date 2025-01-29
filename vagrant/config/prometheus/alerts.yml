@@ -15,3 +15,10 @@ groups:
       annotations:
         title: 'Node Load  {{ $labels.instance }}'
         description: 'My first alert in prometheus'
+    - alert: DiskUsage
+      expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) * 100 / node_filesystem_size_bytes > 90
+      labels:
+        instance: '{{ $labels.instance }}:{{ $labels.mountpoint }}'
+      annotations:
+        title: 'Disk usage'
+        description: 'Disk usage'

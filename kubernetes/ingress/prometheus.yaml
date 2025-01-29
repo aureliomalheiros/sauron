@@ -1,0 +1,37 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: prometheus-vs
+  namespace: monitoring
+spec:
+  hosts:
+  - "prometheus.local"
+  - "grafana.local"
+  - "alertmanager.local"
+  gateways:
+  - istio-system/monitoring
+  http:
+  - match:
+    - authority:
+        exact: alertmanager.local
+    route:
+    - destination:
+        host: alertmanager-operated.monitoring.svc.cluster.local
+        port:
+          number: 9093
+  - match:
+    - authority:
+        exact: prometheus.local
+    route:
+    - destination:
+        host: prometheus-operated.monitoring.svc.cluster.local
+        port:
+          number: 9090
+  - match:
+    - authority:
+        exact: grafana.local
+    route:
+    - destination:
+        host: grafana.monitoring.svc.cluster.local
+        port:
+          number: 3000
